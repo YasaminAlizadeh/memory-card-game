@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import CoverImage from "../Assets/Images/Cover.jpg";
-import { CSSTransition } from "react-transition-group";
 
 const Card = ({ id, url, code, isFlipped, RevealCard }) => {
   useEffect(() => {
@@ -41,7 +40,8 @@ const CardBody = styled.div`
   height: 100%;
   text-align: center;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
   border-radius: 8px;
 `;
 
