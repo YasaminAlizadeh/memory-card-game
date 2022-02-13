@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Card from "./Card";
 
-const Board = () => {
+const Board = ({ shouldGameStart }) => {
   const [cardsData, setCardsData] = useState([]);
   const cardsDataRef = useRef();
   cardsDataRef.current = cardsData;
   const [flippedCards, setFlippedCards] = useState([]);
-  const [shouldGameStart, setShouldGameStart] = useState(false);
 
-  const waitingTime = 3000;
+  const waitingTime = 5000;
 
   useEffect(() => {
     let tempData = [];
@@ -120,18 +119,19 @@ const Board = () => {
 
   return (
     <GameBoard>
-      {cardsData.map((card) => {
-        return (
-          <Card
-            id={card.id}
-            url={card.url}
-            code={card.code}
-            isFlipped={card.isFlipped}
-            RevealCard={RevealCard}
-            key={`${card.id}_${card.url}`}
-          ></Card>
-        );
-      })}
+      {shouldGameStart &&
+        cardsData.map((card) => {
+          return (
+            <Card
+              id={card.id}
+              url={card.url}
+              code={card.code}
+              isFlipped={card.isFlipped}
+              RevealCard={RevealCard}
+              key={`${card.id}_${card.url}`}
+            ></Card>
+          );
+        })}
     </GameBoard>
   );
 };
@@ -154,4 +154,5 @@ const GameBoard = styled.section`
   grid-template-rows: repeat(4, 1fr);
   width: min-content;
   gap: 1em;
+  z-index: 3;
 `;
